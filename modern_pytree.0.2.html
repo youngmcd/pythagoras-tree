@@ -1,0 +1,82 @@
+<html>
+<head>
+	<script type="text/javascript" src="svg.js"></script>
+	<script type="text/javascript" src="pythagoras_tree.0.4.js"></script>
+</head>
+
+<body>
+<div id="theDrawing">
+<script>
+
+//scaling factor
+var scaleF = 200
+
+var canvasWidth = scaleF * 7
+var canvasHeight = scaleF * 8
+var draw = SVG("theDrawing").size(canvasWidth, canvasHeight)
+var myCanvas = new SVGCanvas(canvasWidth, canvasHeight)
+
+
+//traces a thin frame line for the canvas starting at top left corner and goes corner to corner clockwise
+// width X height
+var frameline1 = draw.line(0,0, canvasWidth, 0).stroke({width: 1})
+var frameline2 = draw.line(canvasWidth, 0, canvasWidth,canvasHeight).stroke({width: 1})
+var frameline3 = draw.line(canvasWidth, canvasHeight, 0, canvasHeight).stroke({width: 1})
+var frameline4 = draw.line(0, canvasHeight, 0, 0).stroke({width: 1})
+
+//pink squares to outline non-tree part of cross
+var sq1 = draw.rect(scaleF,scaleF).fill('#f06').move(scaleF*3, scaleF*2)
+var sq2 = draw.rect(scaleF,scaleF).fill('#f06').move(scaleF*2, scaleF*3)
+var sq3 = draw.rect(scaleF,scaleF).fill('#f06').move(scaleF*3, scaleF*3)
+var sq4 = draw.rect(scaleF,scaleF).fill('#f06').move(scaleF*4, scaleF*3)
+var sq5 = draw.rect(scaleF,scaleF).fill('#f06').move(scaleF*3, scaleF*4)
+var sq6 = draw.rect(scaleF,scaleF).fill('#f06').move(scaleF*3, scaleF*5)
+
+//pythagoras tree crossends
+
+//var colorRamp = ['#B09', '#68200F', '#4C351E']
+var colorRamp = ['#e500bb', '#d000bb', '#bc00bb', '#a800bc', '#9400bc', '#8000bd', '#6c00bd', '#5800bd', '#4400bd', '#3000be', '#1c00bf']
+
+
+//function PySquare(svgCanvas, upperLeftCoordinate, size, degreeRotation, colorInHex){
+//these coordinates are from bottom-left origin
+//but the tree rotates from the top-left corner... (this is confusing)
+var tree1_origin_coord = new Coordinate(scaleF*3, scaleF*5)
+var tree1_origin_square = new PySquare(myCanvas, tree1_origin_coord, scaleF, 0, colorRamp[0]) 
+tree1_origin_square.draw()
+drawPyTree(11,11,tree1_origin_square, colorRamp)
+
+
+
+var tree2_origin_coord = new Coordinate(scaleF*2, scaleF*3)
+var tree2_origin_square = new PySquare(myCanvas, tree2_origin_coord, scaleF, 90, colorRamp[0]) 
+tree2_origin_square.draw()
+drawPyTree(11,11,tree2_origin_square, colorRamp)
+
+
+var tree3_origin_coord = new Coordinate(scaleF*5, scaleF*4)
+var tree3_origin_square = new PySquare(myCanvas, tree3_origin_coord, scaleF, -90, colorRamp[0]) 
+tree3_origin_square.draw()
+drawPyTree(11,11,tree3_origin_square, colorRamp)
+
+
+var tree4_origin_coord = new Coordinate(scaleF*4, scaleF*1)
+var tree4_origin_square = new PySquare(myCanvas, tree4_origin_coord, scaleF, 180, colorRamp[0]) 
+tree4_origin_square.draw()
+drawPyTree(11,11,tree4_origin_square, colorRamp)
+
+//function PySquare(svgCanvas, upperLeftCoordinate, size, degreeRotation, colorInHex){
+//var drawPyTree = function(numIter, maxIter, prevSquare, colorRamp){
+
+
+
+</script>
+</div> <!-- theDrawing div -->
+</body>
+</html>
+
+
+
+
+
+
